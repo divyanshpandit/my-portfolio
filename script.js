@@ -52,11 +52,10 @@ LinkedIn: https://linkedin.com/in/divyanshpandit`
 document.querySelectorAll('.sidebar a').forEach(link => {
   link.addEventListener('click', async e => {
     e.preventDefault();
-    const raw = e.target.getAttribute('data-section');
-    const section = raw.replace('_','');
+    const section = e.target.getAttribute('data-section');
 
     await fadeOut(terminal);
-    if(section in content){
+    if(content.hasOwnProperty(section)){
       await typeText(content[section]);
       fadeIn(terminal);
 
@@ -66,7 +65,7 @@ document.querySelectorAll('.sidebar a').forEach(link => {
         }, 1000);
       }
     } else {
-      await typeText("Loading section...");
+      await typeText("Section not found.");
       fadeIn(terminal);
     }
   });
@@ -93,10 +92,10 @@ function fadeIn(element) {
 async function typeText(text) {
   terminal.textContent = '';
   const lines = text.split('\n');
-  for (let line of lines) {
-    for (let char of line) {
+  for (const line of lines) {
+    for (const char of line) {
       terminal.textContent += char;
-      await new Promise(res => setTimeout(res, 15));
+      await new Promise(res => setTimeout(res, 10));
     }
     terminal.textContent += '\n';
   }
