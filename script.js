@@ -53,9 +53,7 @@ document.querySelectorAll('.sidebar a').forEach(link => {
   link.addEventListener('click', async e => {
     e.preventDefault();
     const section = e.target.getAttribute('data-section');
-    
     if(content.hasOwnProperty(section)){
-      // Immediately start typing new content (no flicker)
       await typeText(content[section]);
 
       if(section === 'resume'){
@@ -75,12 +73,12 @@ document.getElementById('homeLink').addEventListener('click', async (e) => {
 });
 
 async function typeText(text) {
-  terminal.textContent = ''; // clear without fade/flicker
+  terminal.textContent = ''; // NO fade, NO flicker, instantly clears
   const lines = text.split('\n');
   for (const line of lines) {
     for (const char of line) {
       terminal.textContent += char;
-      await new Promise(res => setTimeout(res, 10));
+      await new Promise(res => setTimeout(res, 10)); // typing speed
     }
     terminal.textContent += '\n';
   }
