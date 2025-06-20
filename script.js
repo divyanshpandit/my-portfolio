@@ -7,16 +7,16 @@ const content = {
   projects: `Projects:
 
 1. AI Malware Detector
-   [Click Here](https://github.com/divyanshpandit/AI-Malware-detection-)
+   GitHub: https://github.com/divyanshpandit/AI-Malware-detection-
 
 2. Python Firewall
-   [Click Here](https://github.com/divyanshpandit/PythonFirewall)
+   GitHub: https://github.com/divyanshpandit/PythonFirewall
 
 3. Honeypot CyberSec
-   [Click Here](https://github.com/divyanshpandit/honeypot_cybersec)
+   GitHub: https://github.com/divyanshpandit/honeypot_cybersec
 
 4. Life-in-Weeks Timeline App
-   [Click Here](https://github.com/yourname/life-in-weeks)
+   GitHub: https://github.com/yourname/life-in-weeks
 `,
   education: `Education:
 
@@ -30,7 +30,7 @@ Relevant Coursework:
 AI & ML, Computer Networks, Cloud Computing, Cybersecurity Principles
 `,
   resume: `Downloading Resume...
-(If not downloaded, [Click Here](assets/Updated_Resume_Divyanshu_Dwivedi.docx))`,
+If not auto-downloaded, click here: Updated_Resume_Divyanshu_Dwivedi.docx`,
   contact: "Contact:\nEmail: o2400111@cce.iitmandi.ac.in\nGitHub: github.com/divyanshpandit\nLinkedIn: linkedin.com/in/divyanshpandit"
 };
 
@@ -38,22 +38,27 @@ document.querySelectorAll('.sidebar a').forEach(link => {
   link.addEventListener('click', async e => {
     e.preventDefault();
     const raw = e.target.getAttribute('data-section');
-    const section = raw.replace('_',''); 
+    const section = raw.replace('_','');
 
     await fadeOut(terminal);
-    typeText(content[section] || "Section not found.");
-    fadeIn(terminal);
+    if(section in content){
+      typeText(content[section]);
+      fadeIn(terminal);
 
-    // Resume download trigger
-    if(section === 'resume'){
-      setTimeout(() => {
-        window.open('assets/resume.pdf', '_blank');
-      }, 1000);
+      // Resume Download Trigger
+      if(section === 'resume'){
+        setTimeout(() => {
+          window.open('assets/Updated_Resume_Divyanshu_Dwivedi.docx', '_blank');
+        }, 1000);
+      }
+    }
+    else{
+      typeText("Loading section...");
+      fadeIn(terminal);
     }
   });
 });
 
-// Home link click loads 'hello' content
 document.getElementById('homeLink').addEventListener('click', async (e) => {
   e.preventDefault();
   await fadeOut(terminal);
@@ -74,17 +79,8 @@ function fadeIn(element) {
 
 async function typeText(text) {
   terminal.textContent = '';
-  const parts = text.split('\n');
-  for (let part of parts) {
-    if (part.includes("[Click Here](")) { // Link detected
-      const linkText = part.match(/\[Click Here\]\((.*?)\)/)[1];
-      terminal.innerHTML += `<a href="${linkText}" target="_blank" style="color:#00ffcc;">Click Here</a>\n`;
-    } else {
-      for (let i = 0; i < part.length; i++) {
-        terminal.textContent += part[i];
-        await new Promise(res => setTimeout(res, 15));
-      }
-      terminal.textContent += '\n';
-    }
+  for (let i = 0; i < text.length; i++) {
+    terminal.textContent += text[i];
+    await new Promise(res => setTimeout(res, 15));
   }
 }
