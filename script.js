@@ -1,17 +1,17 @@
 const terminal = document.getElementById('terminal');
 
 const content = {
-  home: "Welcome to Divyanshu Pandit's Portfolio!\nCybersecurity Analyst | Python Developer | AI Enthusiast.",
-  about: "About:\nPassionate cybersecurity professional skilled in network security, Python, and AI-based malware detection. SIEM Certified.",
-  skills: "Skills:\n- Python\n- Cybersecurity\n- Linux\n- Machine Learning\n- Flask, JavaScript, HTML, CSS",
-  projects: "Projects:\n1. AI Malware Detector\n2. Python Firewall\n3. Honeypot CyberSec\n4. Life-in-Weeks Timeline App",
-  contact: "Contact:\nEmail: o2400111@cce.iitmandi.ac.in\nGitHub: divyanshpandit\nLinkedIn: divyanshpandit"
+  hello: "Welcome to Divyanshu Pandit's Portfolio!\nCybersecurity Analyst | Python Developer | AI Enthusiast.",
+  about: "About:\nPassionate cybersecurity professional skilled in network security, Python, and AI-based malware detection. SIEM Certified. Completed multiple TryHackMe rooms, EC-Council SIEM Certified, and Advent of Cyber.",
+  skills: "Skills:\n- Python\n- Cybersecurity (Network & Cloud)\n- Linux\n- Machine Learning\n- Flask, JavaScript, HTML, CSS\n- Malware Analysis & YARA Rules\n- SIEM, OpenCTI, Threat Intel",
+  projects: "Projects:\n\n1. AI Malware Detector - Classify files using Neural Networks.\n2. Python Firewall - Real-time packet filtering.\n3. Honeypot CyberSec - Research honeypot setup & attack classification.\n4. Life-in-Weeks Timeline App - Flask-based event timeline web app.",
+  contact: "Contact:\n\nEmail: o2400111@cce.iitmandi.ac.in\nGitHub: github.com/divyanshpandit\nLinkedIn: linkedin.com/in/divyanshpandit"
 };
 
 document.querySelectorAll('.sidebar a').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    const section = e.target.getAttribute('data-section');
+    const section = e.target.getAttribute('data-section').replace('_',''); // fix here
     typeText(content[section] || "Section not found.");
   });
 });
