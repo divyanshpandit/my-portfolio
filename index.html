@@ -2,59 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Divyanshu Dwivedi | Cybersecurity & AI Enthusiast</title>
+  <title>Divyanshu Dwivedi | PyCharm Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="terminal">
-      <span class="green">divyanshu@portfolio:~$</span>
-      <span id="typed"></span><span class="cursor">|</span>
-    </div>
-    <nav>
-      <a href="#about">About()</a>
-      <a href="#skills">Skills()</a>
-      <a href="#projects">Projects()</a>
-      <a href="#contact">Contact()</a>
-    </nav>
-  </header>
-
-  <section id="about">
-    <h2>About()</h2>
-    <p>Passionate cybersecurity analyst and AI enthusiast, blending security expertise with Python and machine learning to craft robust, intelligent systems.</p>
-  </section>
-
-  <section id="skills">
-    <h2>Skills()</h2>
+  <div class="sidebar">
+    <h2>&lt;/&gt; Divyanshu.py</h2>
     <ul>
-      <li><span class="blue">Python</span></li>
-      <li><span class="yellow">Cybersecurity</span></li>
-      <li><span class="green">Machine Learning</span></li>
-      <li><span class="purple">Flask, JS, HTML, CSS</span></li>
-      <li><span class="orange">Linux, Cloud</span></li>
+      <li><a href="#about">About()</a></li>
+      <li><a href="#skills">Skills()</a></li>
+      <li><a href="#projects">Projects()</a></li>
+      <li><a href="#contact">Contact()</a></li>
     </ul>
-  </section>
+  </div>
 
-  <section id="projects">
-    <h2>Projects()</h2>
-    <ul>
-      <li><strong class="green">Honeypot_CyberSec</strong> — Dynamic AI-based Honeypot attack detection.</li>
-      <li><strong class="blue">PythonFirewall</strong> — Real-time packet filter using NetfilterQueue & Scapy.</li>
-      <li><strong class="yellow">Neural Malware Detector</strong> — AI-powered malware classification.</li>
-      <li><strong class="purple">Life-in-Weeks App</strong> — Flask App to visualize life's timeline.</li>
-    </ul>
-  </section>
+  <div class="main">
+    <header>
+      <p class="terminal">divyanshu@portfolio:~$ <span id="typed"></span><span class="cursor">|</span></p>
+    </header>
 
-  <section id="contact">
-    <h2>Contact()</h2>
-    <p><span class="green">Email:</span> o2400111@cce.iitmandi.ac.in</p>
-    <p><span class="blue">GitHub:</span> <a href="https://github.com/divyanshpandit" target="_blank">divyanshpandit</a></p>
-    <p><span class="yellow">LinkedIn:</span> <a href="https://linkedin.com/in/divyanshpandit/" target="_blank">divyanshpandit</a></p>
-  </section>
+    <section id="about">
+      <h2>About()</h2>
+      <p>Cybersecurity Analyst | Python & AI Developer | Cloud & Linux Enthusiast. Passionate about creating secure, intelligent, and efficient systems.</p>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Divyanshu Dwivedi — All Rights Reserved</p>
-  </footer>
+    <section id="skills">
+      <h2>Skills()</h2>
+      <ul id="skills-list"></ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects()</h2>
+      <ul id="projects-list"></ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact()</h2>
+      <ul id="social-list"></ul>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Divyanshu Dwivedi. All rights reserved.</p>
+    </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
