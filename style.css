@@ -1,59 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 
 body {
-  background: #1e1e1e;
-  color: #ccc;
-  font-family: 'Fira Code', monospace;
   margin: 0;
-  padding: 0;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  font-family: 'Fira Code', monospace;
+  display: flex;
 }
 
-header {
-  background: #121212;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 0 15px #00ff99;
+.sidebar {
+  width: 250px;
+  background: #2d2d2d;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.5);
 }
 
-.terminal {
-  font-size: 1.3rem;
+.sidebar h2 {
   color: #00ff99;
 }
 
-nav {
-  margin-top: 15px;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
 }
 
-nav a {
-  color: #00ffcc;
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
   text-decoration: none;
-  margin: 0 10px;
-  transition: all 0.3s ease;
+  color: #9cdcfe;
+  transition: 0.3s;
 }
 
-nav a:hover {
-  color: #fff;
-  text-shadow: 0 0 10px #00ffcc;
+.sidebar ul li a:hover {
+  color: #00ffcc;
 }
 
-section {
-  padding: 60px 20px;
-  text-align: center;
-  transition: all 0.8s ease;
-  opacity: 0;
-  transform: translateY(30px);
+.main {
+  flex: 1;
+  padding: 20px;
 }
 
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
+header .terminal {
+  background: #121212;
+  padding: 10px;
+  border-radius: 5px;
+  color: #00ff99;
 }
 
 h2 {
-  color: #00ffcc;
-  border-bottom: 2px dashed #00ffcc;
-  display: inline-block;
-  padding-bottom: 5px;
+  color: #569cd6;
+  border-bottom: 1px dashed #569cd6;
 }
 
 ul {
@@ -62,42 +62,34 @@ ul {
 }
 
 ul li {
-  padding: 8px;
-  margin: 8px 0;
-  background: rgba(0, 255, 204, 0.1);
-  border-radius: 6px;
-  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
 ul li:hover {
+  background: rgba(0, 255, 204, 0.2);
   transform: scale(1.05);
-  box-shadow: 0 0 10px #00ffcc;
-}
-
-footer {
-  background: #121212;
-  color: #999;
-  text-align: center;
-  padding: 15px;
-  margin-top: 50px;
 }
 
 .cursor {
-  display: inline-block;
-  background-color: #00ff99;
-  width: 8px;
+  background: #00ff99;
+  width: 6px;
   height: 18px;
+  display: inline-block;
   animation: blink 1s infinite;
 }
 
 @keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-/* Syntax Highlight */
-.green { color: #00ff99; }
-.blue { color: #0099ff; }
-.yellow { color: #ffff66; }
-.purple { color: #cc66ff; }
-.orange { color: #ff9933; }
+footer {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 0.8em;
+  color: #888;
+}
