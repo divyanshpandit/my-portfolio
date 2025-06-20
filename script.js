@@ -73,13 +73,18 @@ document.getElementById('homeLink').addEventListener('click', async (e) => {
 });
 
 async function typeText(text) {
-  terminal.textContent = ''; // NO fade, NO flicker, instantly clears
+  terminal.innerHTML = ''; // Clear without flicker
   const lines = text.split('\n');
   for (const line of lines) {
     for (const char of line) {
-      terminal.textContent += char;
-      await new Promise(res => setTimeout(res, 10)); // typing speed
+      terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor">|</span>', ''); // remove old cursor
+      terminal.innerHTML += char;
+      terminal.innerHTML += '<span class="cursor">|</span>'; // new blinking cursor
+      await new Promise(res => setTimeout(res, 10));
     }
-    terminal.textContent += '\n';
+    terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor">|</span>', '');
+    terminal.innerHTML += '\n';
   }
+  // keep cursor blinking at end
+  terminal.innerHTML += '<span class="cursor">|</span>';
 }
