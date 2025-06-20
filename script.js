@@ -1,41 +1,44 @@
-// Typing Animation
-const typedText = "Welcome to my PyCharm-themed Portfolio!";
-let index = 0;
-function type() {
-  if (index < typedText.length) {
-    document.getElementById("typed").innerHTML += typedText.charAt(index);
-    index++;
-    setTimeout(type, 80);
-  }
-}
-window.onload = type;
+const sections = {
+    about: "Cybersecurity Analyst | Python & AI Developer | Cloud & Linux Enthusiast. Passionate about creating secure, intelligent, and efficient systems.",
+    skills: "Python | Cybersecurity | Machine Learning | Flask, JavaScript, HTML, CSS | Linux & Cloud Security",
+    projects: "1. Honeypot_CyberSec\n2. PythonFirewall\n3. Neural Malware Detector\n4. Life-in-Weeks Timeline App",
+    contact: "Email: o2400111@cce.iitmandi.ac.in\nGitHub: github.com/divyanshpandit\nLinkedIn: linkedin.com/in/divyanshpandit"
+};
 
-// Load JSON data
-async function loadData() {
-  const skills = await fetch('data/skills.json').then(res => res.json());
-  const projects = await fetch('data/projects.json').then(res => res.json());
-  const socials = await fetch('data/social.json').then(res => res.json());
+const main = document.querySelector('.main');
+const header = document.querySelector('header');
 
-  const skillsList = document.getElementById('skills-list');
-  skills.forEach(skill => {
-    const li = document.createElement('li');
-    li.textContent = skill;
-    skillsList.appendChild(li);
-  });
+document.querySelectorAll('.sidebar a').forEach(link => {
+    link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const target = e.target.getAttribute('href').substring(1);
+        fadeOutMain();
+        await delay(500);
+        showTyping(target);
+    });
+});
 
-  const projectsList = document.getElementById('projects-list');
-  projects.forEach(proj => {
-    const li = document.createElement('li');
-    li.innerHTML = `<strong>${proj.name}</strong>: ${proj.desc} [<a href="${proj.link}" target="_blank">GitHub</a>]`;
-    projectsList.appendChild(li);
-  });
-
-  const socialList = document.getElementById('social-list');
-  socials.forEach(soc => {
-    const li = document.createElement('li');
-    li.innerHTML = `<strong>${soc.platform}</strong>: <a href="${soc.link}" target="_blank">${soc.username}</a>`;
-    socialList.appendChild(li);
-  });
+function fadeOutMain() {
+    header.style.display = 'none';
+    document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
 }
 
-loadData();
+async function showTyping(section) {
+    const display = document.createElement('pre');
+    display.className = 'typingArea';
+    display.textContent = '';
+    main.appendChild(display);
+    await typeText(display, sections[section]);
+}
+
+async function typeText(element, text) {
+    element.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+        element.textContent += text[i];
+        await delay(40);
+    }
+}
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
