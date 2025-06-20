@@ -56,30 +56,3 @@ body {
   100% { opacity: 1; }
 }
 
-/* Only change to mobile when width <= 768px */
-@media screen and (max-width: 768px) {
-  body {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-  }
-
-  .sidebar a {
-    margin: 5px;
-    font-size: 14px;
-  }
-
-  .main {
-    padding: 10px;
-    height: calc(100vh - 60px);
-  }
-
-  #terminal {
-    font-size: 14px;
-  }
-}
