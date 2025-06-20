@@ -11,7 +11,8 @@ const content = {
 document.querySelectorAll('.sidebar a').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
-    const section = e.target.getAttribute('data-section').replace('_',''); // fix here
+    const raw = e.target.getAttribute('data-section'); // e.g. "_hello"
+    const section = raw.replace('_','');               // convert "_hello" => "hello"
     typeText(content[section] || "Section not found.");
   });
 });
