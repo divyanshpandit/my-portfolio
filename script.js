@@ -53,44 +53,29 @@ document.querySelectorAll('.sidebar a').forEach(link => {
   link.addEventListener('click', async e => {
     e.preventDefault();
     const section = e.target.getAttribute('data-section');
-
-    await fadeOut(terminal);
+    
     if(content.hasOwnProperty(section)){
+      // Immediately start typing new content (no flicker)
       await typeText(content[section]);
-      fadeIn(terminal);
 
       if(section === 'resume'){
         setTimeout(() => {
           window.open('assets/Updated_Resume_Divyanshu_Dwivedi.docx', '_blank');
-        }, 1000);
+        }, 500);
       }
     } else {
       await typeText("Section not found.");
-      fadeIn(terminal);
     }
   });
 });
 
 document.getElementById('homeLink').addEventListener('click', async (e) => {
   e.preventDefault();
-  await fadeOut(terminal);
   await typeText(content.hello);
-  fadeIn(terminal);
 });
 
-function fadeOut(element) {
-  return new Promise(resolve => {
-    element.style.opacity = 0;
-    setTimeout(resolve, 500);
-  });
-}
-
-function fadeIn(element) {
-  element.style.opacity = 1;
-}
-
 async function typeText(text) {
-  terminal.textContent = '';
+  terminal.textContent = ''; // clear without fade/flicker
   const lines = text.split('\n');
   for (const line of lines) {
     for (const char of line) {
