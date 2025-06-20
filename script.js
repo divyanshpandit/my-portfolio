@@ -2,20 +2,34 @@ const terminal = document.getElementById('terminal');
 
 const content = {
   hello: "Welcome to Divyanshu Pandit's Portfolio!\nCybersecurity Analyst | Python Developer | AI Enthusiast.",
-  about: "About:\nPassionate cybersecurity professional skilled in network security, Python, and AI-based malware detection. SIEM Certified. Completed multiple TryHackMe rooms, EC-Council SIEM Certified, and Advent of Cyber.",
-  skills: "Skills:\n- Python\n- Cybersecurity (Network & Cloud)\n- Linux\n- Machine Learning\n- Flask, JavaScript, HTML, CSS\n- Malware Analysis & YARA Rules\n- SIEM, OpenCTI, Threat Intel",
-  projects: "Projects:\n\n1. AI Malware Detector - Classify files using Neural Networks.\n2. Python Firewall - Real-time packet filtering.\n3. Honeypot CyberSec - Research honeypot setup & attack classification.\n4. Life-in-Weeks Timeline App - Flask-based event timeline web app.",
-  contact: "Contact:\n\nEmail: o2400111@cce.iitmandi.ac.in\nGitHub: github.com/divyanshpandit\nLinkedIn: linkedin.com/in/divyanshpandit"
+  about: "About:\nPassionate cybersecurity professional skilled in network security, Python, and AI-based malware detection. SIEM Certified.",
+  skills: "Skills:\n- Python\n- Cybersecurity\n- Linux\n- Machine Learning\n- Flask, JavaScript, HTML, CSS",
+  projects: "Projects:\n1. AI Malware Detector\n2. Python Firewall\n3. Honeypot CyberSec\n4. Life-in-Weeks Timeline App",
+  contact: "Contact:\nEmail: o2400111@cce.iitmandi.ac.in\nGitHub: github.com/divyanshpandit\nLinkedIn: linkedin.com/in/divyanshpandit"
 };
 
 document.querySelectorAll('.sidebar a').forEach(link => {
-  link.addEventListener('click', e => {
+  link.addEventListener('click', async e => {
     e.preventDefault();
-    const raw = e.target.getAttribute('data-section'); // e.g. "_hello"
-    const section = raw.replace('_','');               // convert "_hello" => "hello"
-    typeText(content[section] || "Section not found.");
+    const raw = e.target.getAttribute('data-section');
+    const section = raw.replace('_',''); // remove "_" to match content keys
+
+    await fadeOut(terminal);
+    await typeText(content[section] || "Section not found.");
+    fadeIn(terminal);
   });
 });
+
+function fadeOut(element) {
+  return new Promise(resolve => {
+    element.style.opacity = 0;
+    setTimeout(resolve, 500); // matches CSS transition time
+  });
+}
+
+function fadeIn(element) {
+  element.style.opacity = 1;
+}
 
 async function typeText(text) {
   terminal.textContent = '';
