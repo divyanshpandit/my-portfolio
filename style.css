@@ -102,5 +102,10 @@ footer {
   min-height: 200px;
   white-space: pre-wrap;
   font-size: 1em;
+  animation: fadeIn 0.5s ease;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
