@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Honeypot_CyberSec",
+    "desc": "AI-based dynamic honeypot attack detection",
+    "link": "https://github.com/divyanshpandit/honeypot_cybersec"
+  },
+  {
+    "name": "PythonFirewall",
+    "desc": "Real-time Python-based firewall",
+    "link": "https://github.com/divyanshpandit/PythonFirewall"
+  },
+  {
+    "name": "Neural Malware Detector",
+    "desc": "AI-powered malware classification",
+    "link": "https://github.com/divyanshpandit/AI-Malware-detection-"
+  },
+  {
+    "name": "Life-in-Weeks Timeline App",
+    "desc": "Flask App to visualize life's timeline",
+    "link": "https://github.com/yourname/life-in-weeks"
+  }
+]
