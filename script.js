@@ -1,65 +1,25 @@
-const main = document.querySelector('.main');
-const header = document.querySelector('header');
+const terminal = document.getElementById('terminal');
 
-async function loadData() {
-    const skills = await fetch('data/skills.json').then(res => res.json());
-    const projects = await fetch('data/projects.json').then(res => res.json());
-    const social = await fetch('data/social.json').then(res => res.json());
-    return { skills, projects, social };
-}
+const content = {
+  home: "Welcome to Divyanshu Pandit's Portfolio!\nCybersecurity Analyst | Python Developer | AI Enthusiast.",
+  about: "About:\nPassionate cybersecurity professional skilled in network security, Python, and AI-based malware detection. SIEM Certified.",
+  skills: "Skills:\n- Python\n- Cybersecurity\n- Linux\n- Machine Learning\n- Flask, JavaScript, HTML, CSS",
+  projects: "Projects:\n1. AI Malware Detector\n2. Python Firewall\n3. Honeypot CyberSec\n4. Life-in-Weeks Timeline App",
+  contact: "Contact:\nEmail: o2400111@cce.iitmandi.ac.in\nGitHub: divyanshpandit\nLinkedIn: divyanshpandit"
+};
 
 document.querySelectorAll('.sidebar a').forEach(link => {
-    link.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const target = e.target.getAttribute('href').substring(1);
-        fadeOutMain();
-        await delay(300);
-        const data = await loadData();
-        showTyping(target, data);
-    });
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const section = e.target.getAttribute('data-section');
+    typeText(content[section] || "Section not found.");
+  });
 });
 
-function fadeOutMain() {
-    header.style.display = 'none';
-    document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
-    const oldTyping = document.querySelector('.typingArea');
-    if (oldTyping) oldTyping.remove();
+async function typeText(text) {
+  terminal.textContent = '';
+  for (let i = 0; i < text.length; i++) {
+    terminal.textContent += text[i];
+    await new Promise(res => setTimeout(res, 15));
+  }
 }
-
-async function showTyping(section, data) {
-    const display = document.createElement('pre');
-    display.className = 'typingArea';
-    display.textContent = '';
-    main.appendChild(display);
-
-    let text = '';
-
-    switch(section) {
-        case 'about':
-            text = "Cybersecurity Analyst | Python & AI Developer | Cloud & Linux Enthusiast.\nPassionate about creating secure and intelligent systems.";
-            break;
-        case 'skills':
-            text = "Skills:\n\n" + data.skills.join('\n');
-            break;
-        case 'projects':
-            text = "Projects:\n\n" + data.projects.map(p => `${p.name}:\n${p.desc}\nLink: ${p.link}\n`).join('\n');
-            break;
-        case 'contact':
-            text = "Contact:\n\n" + data.social.map(s => `${s.platform}: ${s.username}\n`).join('\n');
-            break;
-        default:
-            text = "Section not found!";
-    }
-
-    await typeText(display, text);
-}
-
-async function typeText(element, text) {
-    element.textContent = '';
-    for (let i = 0; i < text.length; i++) {
-        element.textContent += text[i];
-        await delay(20);
-    }
-}
-
-function delay(m
