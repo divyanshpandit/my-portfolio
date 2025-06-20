@@ -4,8 +4,8 @@ const header = document.querySelector('header');
 async function loadData() {
     const skills = await fetch('data/skills.json').then(res => res.json());
     const projects = await fetch('data/projects.json').then(res => res.json());
-    const socials = await fetch('data/social.json').then(res => res.json());
-    return { skills, projects, socials };
+    const social = await fetch('data/social.json').then(res => res.json());
+    return { skills, projects, social };
 }
 
 document.querySelectorAll('.sidebar a').forEach(link => {
@@ -13,7 +13,7 @@ document.querySelectorAll('.sidebar a').forEach(link => {
         e.preventDefault();
         const target = e.target.getAttribute('href').substring(1);
         fadeOutMain();
-        await delay(500);
+        await delay(300);
         const data = await loadData();
         showTyping(target, data);
     });
@@ -33,18 +33,19 @@ async function showTyping(section, data) {
     main.appendChild(display);
 
     let text = '';
+
     switch(section) {
         case 'about':
             text = "Cybersecurity Analyst | Python & AI Developer | Cloud & Linux Enthusiast.\nPassionate about creating secure and intelligent systems.";
             break;
         case 'skills':
-            text = "Skills:\n" + data.skills.join('\n');
+            text = "Skills:\n\n" + data.skills.join('\n');
             break;
         case 'projects':
-            text = "Projects:\n" + data.projects.map(p => `${p.name}: ${p.desc} [${p.link}]`).join('\n');
+            text = "Projects:\n\n" + data.projects.map(p => `${p.name}:\n${p.desc}\nLink: ${p.link}\n`).join('\n');
             break;
         case 'contact':
-            text = "Contact:\n" + data.socials.map(s => `${s.platform}: ${s.username}`).join('\n');
+            text = "Contact:\n\n" + data.social.map(s => `${s.platform}: ${s.username}\n`).join('\n');
             break;
         default:
             text = "Section not found!";
@@ -61,6 +62,4 @@ async function typeText(element, text) {
     }
 }
 
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+function delay(m
