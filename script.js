@@ -1,9 +1,19 @@
 const terminal = document.getElementById('terminal');
 
 const content = {
-  hello: "Welcome to Divyanshu Pandit's Portfolio!\nCybersecurity Analyst | Python Developer | AI Enthusiast.",
-  about: "About:\nPassionate cybersecurity professional skilled in network security, Python, and AI-based malware detection. SIEM Certified.",
-  skills: "Skills:\n- Python\n- Cybersecurity\n- Linux\n- Machine Learning\n- Flask, JavaScript, HTML, CSS",
+  hello: `Welcome to Divyanshu Pandit's Portfolio!
+Cybersecurity Analyst | Python Developer | AI Enthusiast.`,
+
+  about: `About:
+Passionate cybersecurity professional skilled in network security, Python, and AI-based malware detection. SIEM Certified.`,
+
+  skills: `Skills:
+- Python
+- Cybersecurity
+- Linux
+- Machine Learning
+- Flask, JavaScript, HTML, CSS`,
+
   projects: `Projects:
 
 1. AI Malware Detector
@@ -16,8 +26,8 @@ const content = {
    GitHub: https://github.com/divyanshpandit/honeypot_cybersec
 
 4. Life-in-Weeks Timeline App
-   GitHub: https://github.com/yourname/life-in-weeks
-`,
+   GitHub: https://github.com/yourname/life-in-weeks`,
+
   education: `Education:
 
 - Bachelor of Science
@@ -27,11 +37,16 @@ const content = {
   Indian Institute of Technology, Mandi | Expected 2025 (9.3 SGPA last semester)
 
 Relevant Coursework:
-AI & ML, Computer Networks, Cloud Computing, Cybersecurity Principles
-`,
+AI & ML, Computer Networks, Cloud Computing, Cybersecurity Principles`,
+
   resume: `Downloading Resume...
 If not auto-downloaded, click here: Updated_Resume_Divyanshu_Dwivedi.docx`,
-  contact: "Contact:\nEmail: o2400111@cce.iitmandi.ac.in\nGitHub: github.com/divyanshpandit\nLinkedIn: linkedin.com/in/divyanshpandit"
+
+  contact: `Contact:
+
+Email: o2400111@cce.iitmandi.ac.in
+GitHub: https://github.com/divyanshpandit
+LinkedIn: https://linkedin.com/in/divyanshpandit`
 };
 
 document.querySelectorAll('.sidebar a').forEach(link => {
@@ -42,18 +57,16 @@ document.querySelectorAll('.sidebar a').forEach(link => {
 
     await fadeOut(terminal);
     if(section in content){
-      typeText(content[section]);
+      await typeText(content[section]);
       fadeIn(terminal);
 
-      // Resume Download Trigger
       if(section === 'resume'){
         setTimeout(() => {
           window.open('assets/Updated_Resume_Divyanshu_Dwivedi.docx', '_blank');
         }, 1000);
       }
-    }
-    else{
-      typeText("Loading section...");
+    } else {
+      await typeText("Loading section...");
       fadeIn(terminal);
     }
   });
@@ -62,7 +75,7 @@ document.querySelectorAll('.sidebar a').forEach(link => {
 document.getElementById('homeLink').addEventListener('click', async (e) => {
   e.preventDefault();
   await fadeOut(terminal);
-  typeText(content.hello);
+  await typeText(content.hello);
   fadeIn(terminal);
 });
 
@@ -79,8 +92,12 @@ function fadeIn(element) {
 
 async function typeText(text) {
   terminal.textContent = '';
-  for (let i = 0; i < text.length; i++) {
-    terminal.textContent += text[i];
-    await new Promise(res => setTimeout(res, 15));
+  const lines = text.split('\n');
+  for (let line of lines) {
+    for (let char of line) {
+      terminal.textContent += char;
+      await new Promise(res => setTimeout(res, 15));
+    }
+    terminal.textContent += '\n';
   }
 }
